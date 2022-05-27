@@ -4,6 +4,9 @@
   min-height:100vh;
   padding:50px;
 }
+.container{
+  margin-bottom:20px;
+}
 .heading{
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -21,11 +24,19 @@ button{
   text-transform: capitalize;
   letter-spacing: 2px;
   cursor: pointer;
+  min-width: 100px;
 }
 .err{
-  font-size:12px;
+  font-size:14px;
   color:red
 }
 .input-container{
-  min-height:50px;
+  min-height:70px;
+}
+
+input{
+  border:none;
+  border-bottom:2px solid black;
+  min-width:300px;
+  padding:10px;
 }

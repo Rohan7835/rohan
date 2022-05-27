@@ -10,7 +10,7 @@ function Assign_2() {
   const checkNum = (e) => {
     const errorDiv = errorElement.current;
     errorDiv.innerHTML = "";
-    
+
     if (+e.target.value || e.target.value === "") {
       setNum(+e.target.value);
     } else {
@@ -19,18 +19,15 @@ function Assign_2() {
   };
 
   const calculateSum = () => {
-      let localSum = 0
-    for(let i = 0;i<=num;i++){
-        localSum += i
-    }
-    setSum(localSum)
-  }
+    let localNum = num || 0
+    setSum((localNum * (localNum + 1)) / 2);
+  };
 
   return (
     <div className="container">
       <h1 className="heading">Assignment 2</h1>
       <div className="input-container">
-        <input type="text" value={num || ""} onChange={(e) => checkNum(e)} />
+        <input type="text" value={num || ""} onChange={(e) => checkNum(e)} placeholder="Enter a number"/>
         <div className="err" ref={errorElement}></div>
       </div>
 
