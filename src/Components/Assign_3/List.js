@@ -1,9 +1,9 @@
 import React from "react";
 
-function List({ key, list, endPoint }) {
+function List({ id, list, endPoint }) {
   return (
-    <li key={key} className="list-data">
-      <input type="radio" id={key} name={endPoint} value={key} />
+    <li className="list-data">
+      <input type="radio" id={id} name={endPoint} value={id} />
       {endPoint === "owners" ? (
         <>
         {list.avatar && <img src={list.avatar} />}

@@ -6,13 +6,15 @@ import Typography from "@mui/material/Typography";
 import List from "./List";
 
 function Accordion_component({ data, index }) {
+  const [searchKey,setSearchKey] = useState("");
   const [allListInfo, setAllListInfo] = useState([]);
-  const [clicked, setClicked] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [searchedList, setSearchedList] = useState([]);
 
   //getting data of particular list
   useEffect(() => {
-    if (clicked) {
+    setSearchKey("") //making search input value empty when user expands the list
+    if (expanded) {
       fetch("https://testapi.buopso.com/lms/" + data.endPoint)
         .then((response) => response.json())
         .then((data) => {
@@ -23,11 +25,12 @@ function Accordion_component({ data, index }) {
           alert("Network Error")
         });
     }
-  }, [clicked, data.endPoint]);
+  }, [expanded, data.endPoint]);
 
 
   //searching data in all lists.
   const searchList = (e) => {
+    setSearchKey(e.target.value)
     let localSearch = allListInfo.filter((list) => {
       let label = list.label || list.firstName + list.lastName;
       label = label.toLowerCase();
@@ -41,7 +44,7 @@ function Accordion_component({ data, index }) {
       <AccordionSummary
         aria-controls={`panel${index}a-content`}
         id={`panel${index}a-header`}
-        onClick={() => setClicked(!clicked)}
+        onClick={() => setExpanded(!expanded)}
       >
         <Typography>{data.name}</Typography>
       </AccordionSummary>
@@ -49,14 +52,13 @@ function Accordion_component({ data, index }) {
         <input
           type="text"
           placeholder="Search..."
+          value={searchKey}
           onChange={(e) => searchList(e)}
         />
         <ul>
           {searchedList.length > 0 &&
             searchedList.map((list) => {
-              return (
-                <List key={list.id} list={list} endPoint={data.endPoint} />
-              );
+              return <List key={list.id} id={list.id} list={list} endPoint={data.endPoint}/>;
             })}
         </ul>
       </AccordionDetails>
