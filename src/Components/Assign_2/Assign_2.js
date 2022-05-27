@@ -4,13 +4,14 @@ import Button from "../Button";
 
 function Assign_2() {
   const errorElement = useRef();
-  const [num, setNum] = useState();
+  const [num, setNum] = useState("");
   const [sum, setSum] = useState(0);
 
   const checkNum = (e) => {
     const errorDiv = errorElement.current;
     errorDiv.innerHTML = "";
 
+    //can also use REGEX to check for a valid number
     if (+e.target.value || e.target.value === "") {
       setNum(+e.target.value);
     } else {
