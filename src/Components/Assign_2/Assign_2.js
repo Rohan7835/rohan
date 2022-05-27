@@ -20,6 +20,9 @@ function Assign_2() {
   };
 
   const calculateSum = () => {
+    const errorDiv = errorElement.current;
+    errorDiv.innerHTML = "";
+    
     let localNum = num || 0
     setSum((localNum * (localNum + 1)) / 2);
   };
