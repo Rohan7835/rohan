@@ -8,7 +8,7 @@ const ListData = [
 ];
 
 function Assign_3() {
-  const [Listing, setListing] = useState(ListData);
+  const [Listing] = useState(ListData);
   
   
   return (

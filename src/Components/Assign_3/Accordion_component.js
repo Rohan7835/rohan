@@ -16,9 +16,11 @@ function Accordion_component({ data, index }) {
       fetch("https://testapi.buopso.com/lms/" + data.endPoint)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data.result);
           setAllListInfo(data.result);
           setSearchedList(data.result);
+        })
+        .catch(() => {
+          alert("Network Error")
         });
     }
   }, [clicked, data.endPoint]);
